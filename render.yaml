@@ -13,3 +13,5 @@ services:
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
 
+# Configuration for Local Business Promotion Platform
+
