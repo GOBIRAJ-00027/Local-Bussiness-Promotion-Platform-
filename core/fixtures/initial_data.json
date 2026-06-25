@@ -1,0 +1,434 @@
+[
+  {
+    "model": "core.category",
+    "pk": 1,
+    "fields": {
+      "name": "Restaurants",
+      "icon": "restaurant",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 2,
+    "fields": {
+      "name": "Hospitals",
+      "icon": "hospital",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 3,
+    "fields": {
+      "name": "Hotels",
+      "icon": "building",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 4,
+    "fields": {
+      "name": "Schools",
+      "icon": "book",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 5,
+    "fields": {
+      "name": "Banks",
+      "icon": "bank",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 6,
+    "fields": {
+      "name": "Pharmacies",
+      "icon": "capsule",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 7,
+    "fields": {
+      "name": "Salons",
+      "icon": "scissors",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 8,
+    "fields": {
+      "name": "Gyms",
+      "icon": "heart-pulse",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 9,
+    "fields": {
+      "name": "Auto Repair",
+      "icon": "wrench",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 10,
+    "fields": {
+      "name": "Pet Shops",
+      "icon": "cat",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 11,
+    "fields": {
+      "name": "Electronics",
+      "icon": "tv",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.category",
+    "pk": 12,
+    "fields": {
+      "name": "Clothing",
+      "icon": "bag",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.city",
+    "pk": 1,
+    "fields": {
+      "name": "Chennai",
+      "state": "Tamil Nadu",
+      "is_popular": true
+    }
+  },
+  {
+    "model": "core.city",
+    "pk": 2,
+    "fields": {
+      "name": "Coimbatore",
+      "state": "Tamil Nadu",
+      "is_popular": true
+    }
+  },
+  {
+    "model": "core.city",
+    "pk": 3,
+    "fields": {
+      "name": "Madurai",
+      "state": "Tamil Nadu",
+      "is_popular": true
+    }
+  },
+  {
+    "model": "core.city",
+    "pk": 4,
+    "fields": {
+      "name": "Trichy",
+      "state": "Tamil Nadu",
+      "is_popular": true
+    }
+  },
+  {
+    "model": "core.city",
+    "pk": 5,
+    "fields": {
+      "name": "Salem",
+      "state": "Tamil Nadu",
+      "is_popular": true
+    }
+  },
+  {
+    "model": "core.city",
+    "pk": 6,
+    "fields": {
+      "name": "Tirunelveli",
+      "state": "Tamil Nadu",
+      "is_popular": false
+    }
+  },
+  {
+    "model": "core.city",
+    "pk": 7,
+    "fields": {
+      "name": "Erode",
+      "state": "Tamil Nadu",
+      "is_popular": false
+    }
+  },
+  {
+    "model": "core.city",
+    "pk": 8,
+    "fields": {
+      "name": "Vellore",
+      "state": "Tamil Nadu",
+      "is_popular": false
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 1,
+    "fields": {
+      "name": "Saravana Bhavan",
+      "category": 1,
+      "city": 1,
+      "address": "Anna Salai, Teynampet",
+      "phone": "044-24334444",
+      "email": "info@saravanabhavan.com",
+      "website": "https://www.saravanabhavan.com",
+      "rating": 4.5,
+      "review_count": 1250,
+      "description": "Famous South Indian vegetarian restaurant chain known for authentic Tamil cuisine and delicious dosas.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 2,
+    "fields": {
+      "name": "Apollo Hospitals",
+      "category": 2,
+      "city": 1,
+      "address": "21 Greams Lane, Thousand Lights",
+      "phone": "044-28290200",
+      "email": "contact@apollohospitals.com",
+      "website": "https://www.apollohospitals.com",
+      "rating": 4.8,
+      "review_count": 3500,
+      "description": "One of India's leading healthcare providers with state-of-the-art facilities and expert doctors.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 3,
+    "fields": {
+      "name": "Taj Coromandel",
+      "category": 3,
+      "city": 1,
+      "address": "37 Magsaysay Road, Nungambakkam",
+      "phone": "044-66260000",
+      "email": "reservations@tajhotels.com",
+      "website": "https://www.tajhotels.com",
+      "rating": 4.7,
+      "review_count": 2100,
+      "description": "Luxury 5-star hotel offering world-class amenities and fine dining experiences.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": false,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 4,
+    "fields": {
+      "name": "Chettinad Mess",
+      "category": 1,
+      "city": 1,
+      "address": "T. Nagar, Near Pondy Bazaar",
+      "phone": "044-28123456",
+      "email": "",
+      "website": "",
+      "rating": 4.2,
+      "review_count": 850,
+      "description": "Authentic Chettinad cuisine with spicy and flavorful dishes. Popular for lunch and dinner.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": false,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 5,
+    "fields": {
+      "name": "PSG Hospitals",
+      "category": 2,
+      "city": 2,
+      "address": "Avinashi Road, Peelamedu",
+      "phone": "0422-2570170",
+      "email": "info@psghospitals.com",
+      "website": "https://www.psghospitals.com",
+      "rating": 4.6,
+      "review_count": 1800,
+      "description": "Multi-specialty hospital with advanced medical facilities and experienced healthcare professionals.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 6,
+    "fields": {
+      "name": "Sangam Hotel",
+      "category": 3,
+      "city": 3,
+      "address": "77 Alagar Koil Road, K. K. Nagar",
+      "phone": "0452-2534444",
+      "email": "reservations@sangamhotel.com",
+      "website": "https://www.sangamhotel.com",
+      "rating": 4.4,
+      "review_count": 950,
+      "description": "Premium hotel in Madurai with comfortable rooms and excellent traditional hospitality.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": false,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 7,
+    "fields": {
+      "name": "St. Joseph's College",
+      "category": 4,
+      "city": 1,
+      "address": "Trichy Road, Tiruchirappalli",
+      "phone": "0431-2764400",
+      "email": "principal@stjosephs.edu",
+      "website": "https://www.stjosephs.edu",
+      "rating": 4.5,
+      "review_count": 650,
+      "description": "Premier educational institution offering quality education with modern infrastructure.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": false,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 8,
+    "fields": {
+      "name": "State Bank of India",
+      "category": 5,
+      "city": 1,
+      "address": "Anna Salai, Mount Road",
+      "phone": "044-28410000",
+      "email": "contact@sbi.co.in",
+      "website": "https://www.sbi.co.in",
+      "rating": 3.8,
+      "review_count": 420,
+      "description": "Main branch of State Bank of India with full banking services and ATM facilities.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": false,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 9,
+    "fields": {
+      "name": "MedPlus Pharmacy",
+      "category": 6,
+      "city": 2,
+      "address": "RS Puram, Coimbatore",
+      "phone": "0422-2567890",
+      "email": "help@medplusindia.com",
+      "website": "https://www.medplusindia.com",
+      "rating": 4.3,
+      "review_count": 320,
+      "description": "Leading pharmacy chain with wide range of medicines and health products.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 10,
+    "fields": {
+      "name": "Lakme Salon",
+      "category": 7,
+      "city": 1,
+      "address": "Express Avenue Mall, Royapettah",
+      "phone": "044-28123456",
+      "email": "",
+      "website": "",
+      "rating": 4.1,
+      "review_count": 280,
+      "description": "Premium beauty salon offering hair styling, skincare, and bridal makeup services.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": false,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 11,
+    "fields": {
+      "name": "Fitness First Gym",
+      "category": 8,
+      "city": 1,
+      "address": "Nungambakkam, Chennai",
+      "phone": "044-28234567",
+      "email": "chennai@fitnessfirstindia.com",
+      "website": "https://www.fitnessfirstindia.com",
+      "rating": 4.4,
+      "review_count": 560,
+      "description": "Modern gym with latest equipment, personal trainers, and group fitness classes.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.business",
+    "pk": 12,
+    "fields": {
+      "name": "Maruti Service Center",
+      "category": 9,
+      "city": 2,
+      "address": "Avinashi Road, Coimbatore",
+      "phone": "0422-2334567",
+      "email": "service@maruti.co.in",
+      "website": "https://www.maruti.co.in",
+      "rating": 4.2,
+      "review_count": 890,
+      "description": "Authorized Maruti Suzuki service center with expert technicians and genuine spare parts.",
+      "image": "",
+      "is_verified": true,
+      "is_open_24x7": false,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]

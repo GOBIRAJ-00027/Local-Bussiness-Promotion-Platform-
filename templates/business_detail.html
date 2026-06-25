@@ -1,0 +1,402 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ business.name }} - InfoHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(254, 202, 87, 0.15) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.6s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .business-header {
+            background: white;
+            padding: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .business-icon {
+            font-size: 5rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .rating {
+            color: #ffc107;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .verified-badge, .open-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3); }
+            50% { box-shadow: 0 4px 20px rgba(255, 107, 107, 0.6); }
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            animation: fadeIn 0.6s ease-out backwards;
+        }
+        
+        .info-card:nth-child(1) { animation-delay: 0.1s; }
+        .info-card:nth-child(2) { animation-delay: 0.2s; }
+        .info-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .info-label {
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .btn-action {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 25px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-action::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-action:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.5);
+            color: white;
+        }
+        
+        .back-link {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .back-link:hover {
+            color: #ee5a6f;
+            transform: translateX(-5px);
+        }
+        
+        .table {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .table td:first-child {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            animation: slideUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="bi bi-info-circle-fill"></i> InfoHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, {{ user.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="business-header">
+        <div class="container">
+            <a href="{% url 'search' %}" class="back-link mb-3 d-inline-block">
+                <i class="bi bi-arrow-left"></i> Back to Search
+            </a>
+            <div class="row align-items-center">
+                <div class="col-md-2 text-center">
+                    <div class="business-icon">
+                        <i class="bi bi-{{ business.category.icon|default:'building' }}"></i>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <h2>{{ business.name }}</h2>
+                    <p class="text-muted mb-2">{{ business.category.name }} | {{ business.city.name }}, {{ business.city.state }}</p>
+                    <div class="d-flex gap-3 align-items-center">
+                        <span class="rating">
+                            <i class="bi bi-star-fill"></i> {{ business.rating }}
+                        </span>
+                        <span class="text-muted">({{ business.review_count }} reviews)</span>
+                        {% if business.is_verified %}
+                        <span class="verified-badge">
+                            <i class="bi bi-check-circle-fill"></i> Verified
+                        </span>
+                        {% endif %}
+                        {% if business.is_open_24x7 %}
+                        <span class="open-badge">
+                            <i class="bi bi-clock-fill"></i> Open 24x7
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="info-card">
+                    <h4 class="mb-3">About</h4>
+                    <p>{{ business.description|default:"No description available" }}</p>
+                </div>
+
+                <div class="info-card">
+                    <h4 class="mb-3">Contact Information</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="info-label">
+                                <i class="bi bi-telephone"></i> Phone
+                            </div>
+                            <p>{{ business.phone }}</p>
+                        </div>
+                        {% if business.email %}
+                        <div class="col-md-6 mb-3">
+                            <div class="info-label">
+                                <i class="bi bi-envelope"></i> Email
+                            </div>
+                            <p>{{ business.email }}</p>
+                        </div>
+                        {% endif %}
+                        {% if business.website %}
+                        <div class="col-md-6 mb-3">
+                            <div class="info-label">
+                                <i class="bi bi-globe"></i> Website
+                            </div>
+                            <p><a href="{{ business.website }}" target="_blank">{{ business.website }}</a></p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4 class="mb-3">Address</h4>
+                    <div class="info-label">
+                        <i class="bi bi-geo-alt"></i> Location
+                    </div>
+                    <p>{{ business.address }}</p>
+                    <p class="text-muted">{{ business.city.name }}, {{ business.city.state }}</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card">
+                    <h4 class="mb-3">Quick Actions</h4>
+                    <a href="tel:{{ business.phone }}" class="btn btn-action w-100 mb-2">
+                        <i class="bi bi-telephone"></i> Call Now
+                    </a>
+                    {% if business.website %}
+                    <a href="{{ business.website }}" target="_blank" class="btn btn-outline-primary w-100 mb-2">
+                        <i class="bi bi-globe"></i> Visit Website
+                    </a>
+                    {% endif %}
+                    <a href="{% url 'category_listings' business.category.id %}" class="btn btn-outline-secondary w-100">
+                        <i class="bi bi-grid"></i> More in {{ business.category.name }}
+                    </a>
+                </div>
+
+                <div class="info-card">
+                    <h4 class="mb-3">Business Details</h4>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><i class="bi bi-tag"></i> Category</td>
+                            <td>{{ business.category.name }}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-geo-alt"></i> City</td>
+                            <td>{{ business.city.name }}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-star"></i> Rating</td>
+                            <td>{{ business.rating }} / 5.0</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-chat"></i> Reviews</td>
+                            <td>{{ business.review_count }}</td>
+                        </tr>
+                        {% if business.is_open_24x7 %}
+                        <tr>
+                            <td><i class="bi bi-clock"></i> Hours</td>
+                            <td>Open 24x7</td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 InfoHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoHub - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(254, 202, 87, 0.15) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.6s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 2rem;
+            color: white !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        
+        .search-box {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-control, .form-select {
+            border-radius: 15px;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            background: #f8f9fa;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 0.3rem rgba(255, 107, 107, 0.25);
+            background: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-search {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border: none;
+            border-radius: 15px;
+            padding: 14px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-search::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-search:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-search:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.5);
+            color: white;
+        }
+        
+        .section-title {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #ff6b6b;
+            position: relative;
+            animation: slideInLeft 0.6s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #feca57, transparent);
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+        
+        .category-card:hover::before {
+            animation: shine 0.6s;
+        }
+        
+        @keyframes shine {
+            from { left: -50%; }
+            to { left: 150%; }
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+        
+        .category-icon {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover .category-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .business-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 100%;
+            position: relative;
+        }
+        
+        .business-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        
+        .business-card:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.3);
+        }
+        
+        .business-card-body {
+            padding: 25px;
+        }
+        
+        .business-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .rating {
+            color: #ffc107;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .verified-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3); }
+            50% { box-shadow: 0 4px 20px rgba(255, 107, 107, 0.6); }
+        }
+        
+        .city-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .city-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .city-card:hover::before {
+            left: 100%;
+        }
+        
+        .city-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+            color: #ff6b6b;
+        }
+        
+        .city-card i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        /* Staggered Animation for Cards */
+        .col-6, .col-md-4, .col-lg-2, .col-md-6, .col-lg-3, .col-lg-4 {
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .row > *:nth-child(1) { animation-delay: 0.1s; }
+        .row > *:nth-child(2) { animation-delay: 0.2s; }
+        .row > *:nth-child(3) { animation-delay: 0.3s; }
+        .row > *:nth-child(4) { animation-delay: 0.4s; }
+        .row > *:nth-child(5) { animation-delay: 0.5s; }
+        .row > *:nth-child(6) { animation-delay: 0.6s; }
+        .row > *:nth-child(7) { animation-delay: 0.7s; }
+        .row > *:nth-child(8) { animation-delay: 0.8s; }
+        .row > *:nth-child(9) { animation-delay: 0.9s; }
+        .row > *:nth-child(10) { animation-delay: 1s; }
+        .row > *:nth-child(11) { animation-delay: 1.1s; }
+        .row > *:nth-child(12) { animation-delay: 1.2s; }
+        
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .location-btn {
+            background: white;
+            border: 2px solid #ff6b6b;
+            color: #ff6b6b;
+            border-radius: 25px;
+            padding: 8px 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .location-btn:hover {
+            background: #ff6b6b;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .reviews-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        
+        .review-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .review-stars {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="bi bi-info-circle-fill"></i> InfoHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'search' %}">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn location-btn ms-2" onclick="getLocation()">
+                            <i class="bi bi-geo-alt-fill"></i> <span id="location-text">Detect Location</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, {{ user.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="search-box">
+                        <h3 class="text-center mb-4 text-dark">Find the best businesses in your city</h3>
+                        <form method="GET" action="{% url 'search' %}">
+                            <div class="row g-3">
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" name="q" placeholder="What are you looking for?" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select" name="category">
+                                        <option value="">All Categories</option>
+                                        {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="form-select" name="city">
+                                        <option value="">All Cities</option>
+                                        {% for city in popular_cities %}
+                                        <option value="{{ city.id }}">{{ city.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-search w-100">
+                                        <i class="bi bi-search"></i> Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title">Popular Categories</h2>
+            </div>
+        </div>
+        <div class="row g-3">
+            {% for category in categories %}
+            <div class="col-6 col-md-4 col-lg-2">
+                <a href="{% url 'category_listings' category.id %}" class="category-card">
+                    <div class="category-icon">
+                        <i class="bi bi-{{ category.icon|default:'grid' }}"></i>
+                    </div>
+                    <h6>{{ category.name }}</h6>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title">Popular Cities</h2>
+            </div>
+        </div>
+        <div class="row g-3">
+            {% for city in popular_cities %}
+            <div class="col-6 col-md-4 col-lg-2">
+                <a href="{% url 'city_listings' city.id %}" class="city-card">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h6 class="mt-2">{{ city.name }}</h6>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title">Featured Businesses</h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for business in featured_businesses %}
+            <div class="col-md-6 col-lg-3">
+                <a href="{% url 'business_detail' business.id %}" class="text-decoration-none">
+                    <div class="business-card">
+                        <img src="https://via.placeholder.com/400x150/ff6b6b/ffffff?text={{ business.name|urlencode }}" 
+                             alt="{{ business.name }}" 
+                             class="business-image">
+                        <div class="business-card-body">
+                            <h5>{{ business.name }}</h5>
+                            <p class="text-muted mb-1">{{ business.category.name }}</p>
+                            <p class="text-muted small">
+                                <i class="bi bi-geo-alt"></i> {{ business.city.name }}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="rating">
+                                    <i class="bi bi-star-fill"></i> {{ business.rating }}
+                                </span>
+                                {% if business.is_verified %}
+                                <span class="verified-badge">Verified</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title">Recent Reviews</h2>
+            </div>
+        </div>
+        <div class="reviews-section">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 45px; height: 45px; background: linear-gradient(135deg, #ff6b6b, #feca57);">
+                                <i class="bi bi-person-fill text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Rahul Kumar</h6>
+                                <small class="text-muted">2 days ago</small>
+                            </div>
+                        </div>
+                        <div class="review-stars mb-2">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="mb-0">"Excellent service! The staff was very professional and the quality exceeded my expectations."</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 45px; height: 45px; background: linear-gradient(135deg, #ff6b6b, #feca57);">
+                                <i class="bi bi-person-fill text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Priya Sharma</h6>
+                                <small class="text-muted">5 days ago</small>
+                            </div>
+                        </div>
+                        <div class="review-stars mb-2">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <p class="mb-0">"Great experience overall. Would definitely recommend to others. Value for money!"</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 45px; height: 45px; background: linear-gradient(135deg, #ff6b6b, #feca57);">
+                                <i class="bi bi-person-fill text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Arun Vijay</h6>
+                                <small class="text-muted">1 week ago</small>
+                            </div>
+                        </div>
+                        <div class="review-stars mb-2">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <p class="mb-0">"Good quality service and friendly staff. The ambiance was really nice and welcoming."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 InfoHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function getLocation() {
+            const locationText = document.getElementById('location-text');
+            locationText.innerHTML = '<i class="bi bi-arrow-clockwise spin"></i> Detecting...';
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        locationText.innerHTML = '<i class="bi bi-check-circle-fill"></i> Location Found';
+                        
+                        // Store location in session
+                        sessionStorage.setItem('userLat', lat);
+                        sessionStorage.setItem('userLon', lon);
+                        
+                        // Show success message
+                        showNotification('Location detected successfully!', 'success');
+                    },
+                    (error) => {
+                        locationText.innerHTML = '<i class="bi bi-geo-alt-fill"></i> Detect Location';
+                        showNotification('Unable to detect location. Please enable location services.', 'error');
+                    }
+                );
+            } else {
+                locationText.innerHTML = '<i class="bi bi-geo-alt-fill"></i> Detect Location';
+                showNotification('Geolocation is not supported by your browser.', 'error');
+            }
+        }
+        
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type === 'success' ? 'success' : 'danger'} position-fixed top-0 end-0 m-3`;
+            notification.style.cssText = 'z-index: 9999; border-radius: 15px; animation: slideInRight 0.5s ease-out;';
+            notification.innerHTML = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease-out';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+        
+        // Add CSS for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            .spin {
+                animation: spin 1s linear infinite;
+            }
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
