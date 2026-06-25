@@ -16,3 +16,5 @@ if not User.objects.filter(username='josh').exists():
     print("Superuser 'josh' created successfully!")
 else:
     print("Superuser 'josh' already exists!")
+
+# Auto-create user for Render deployment
