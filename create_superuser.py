@@ -3,7 +3,7 @@ import os
 import sys
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'infohub_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'justdial_project.settings')
 django.setup()
 
 from django.contrib.auth import get_user_model
